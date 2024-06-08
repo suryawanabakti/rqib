@@ -2,7 +2,13 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HapalanController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KelasSiswaController;
+use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PendaftarController;
+use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
 use App\Models\User;
 use App\Notifications\FeedbackNotification;
@@ -44,6 +50,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::resource("/admin/kelas", KelasController::class)->names("admin.kelas");
+    Route::resource("/admin/matakuliah", MataKuliahController::class)->names("admin.matakuliah");
+    Route::get('/admin/pendaftar', [PendaftarController::class, 'index'])->name('admin.pendaftar.index');
+
+    Route::post('/admin/pendaftar/{pendaftar}/diterima', [PendaftarController::class, 'diterima'])->name('admin.pendaftar.diterima');
+
+    Route::resource('/admin/penilaian/kelassiswa', KelasSiswaController::class)->names('admin.kelassiswa');
+    Route::resource('/admin/penilaian', PenilaianController::class)->names('admin.penilaian');
+    Route::get('/admin/penilaian/hapalan/{user}', [HapalanController::class, 'index'])->name('admin.penilaian.hapalan');
+
     Route::resource('users', UserController::class)->names("admin.users");
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -1,9 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Head, Link, useForm } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
+import FlashMessage from "@/Components/FlashMessage";
 
 export default function Login({ status, canResetPassword }) {
+    const { flash } = usePage().props;
+    console.log(flash);
+    const [show, setShow] = useState(flash.message ? true : false);
+
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
@@ -12,10 +17,11 @@ export default function Login({ status, canResetPassword }) {
     });
 
     useEffect(() => {
+        setShow(flash.message ? true : false);
         return () => {
             reset("password");
         };
-    }, []);
+    }, [flash]);
 
     const submit = (e) => {
         e.preventDefault();
@@ -26,7 +32,7 @@ export default function Login({ status, canResetPassword }) {
     return (
         <GuestLayout>
             <Head title="Log in" />
-
+            <FlashMessage flash={flash} show={show} setShow={setShow} />
             {status && (
                 <div className="mb-4 font-medium text-sm text-green-600">
                     {status}
@@ -40,21 +46,19 @@ export default function Login({ status, canResetPassword }) {
                                 href="/"
                                 className="navbar-brand navbar-brand-autodark"
                             >
-                                Lareact
+                                RQIB
                             </Link>
                         </div>
                         <h2 className="h3 text-center mb-3">
-                            Login to your account
+                            Masuk ke akun anda
                         </h2>
                         <form onSubmit={submit}>
                             <div className="mb-3">
-                                <label className="form-label">
-                                    Email address
-                                </label>
+                                <label className="form-label">Username</label>
                                 <input
                                     type="email"
                                     className="form-control"
-                                    placeholder="your@email.com"
+                                    placeholder="usernamekamu"
                                     autoComplete="email"
                                     onChange={(e) =>
                                         setData("email", e.target.value)
@@ -69,14 +73,7 @@ export default function Login({ status, canResetPassword }) {
                             <div className="mb-2">
                                 <label className="form-label">
                                     Password
-                                    <span className="form-label-description">
-                                        <Link
-                                            tabIndex={-1}
-                                            href={route("password.request")}
-                                        >
-                                            I forgot password
-                                        </Link>
-                                    </span>
+                                    <span className="form-label-description"></span>
                                 </label>
                                 <div className="input-group input-group-flat">
                                     <input
@@ -86,7 +83,7 @@ export default function Login({ status, canResetPassword }) {
                                                 : "text"
                                         }`}
                                         className="form-control"
-                                        placeholder="Your password"
+                                        placeholder="Password kamu"
                                         autoComplete="off"
                                         onChange={(e) =>
                                             setData("password", e.target.value)
@@ -147,12 +144,12 @@ export default function Login({ status, canResetPassword }) {
                                 </button>
                             </div>
                         </form>
-                        <div className="text-center text-muted mt-3">
-                            Don't have account yet?
-                            <a href="/register" tabIndex={-1}>
-                                Sign up
-                            </a>
-                        </div>
+                    </div>
+                    <div className="text-center text-secondary mt-3">
+                        Don't have account yet?{" "}
+                        <Link href={route("register")} tabindex="-1">
+                            Sign up
+                        </Link>
                     </div>
                 </div>
                 <div className="col-12 col-lg-6 col-xl-8 d-none d-lg-block">
@@ -161,7 +158,7 @@ export default function Login({ status, canResetPassword }) {
                         className="bg-cover h-100 min-vh-100"
                         style={{
                             backgroundImage:
-                                "url(./static/photos/finances-us-dollars-and-bitcoins-currency-money-2.jpg)",
+                                "url(https://images.pexels.com/photos/20558196/pexels-photo-20558196/free-photo-of-wanita-perempuan-kaum-wanita-bayangan.jpeg)",
                         }}
                     />
                 </div>

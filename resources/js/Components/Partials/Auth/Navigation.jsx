@@ -88,7 +88,7 @@ export default function Navigation({ user }) {
                         <span className="navbar-toggler-icon" />
                     </button>
                     <h1 className="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                        <Link href="/">Lareact</Link>
+                        <Link href="/">PG. RQIB</Link>
                     </h1>
                     <div className="navbar-nav flex-row order-md-last">
                         <div className="d-none d-md-flex">

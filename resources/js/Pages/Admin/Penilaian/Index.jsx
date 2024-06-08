@@ -2,7 +2,16 @@ import FlashMessage from "@/Components/FlashMessage";
 import Pagination from "@/Components/Pagination";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router, usePage } from "@inertiajs/react";
-import { IconPlus, IconEdit, IconTrash } from "@tabler/icons-react";
+import {
+    IconPlus,
+    IconEdit,
+    IconTrash,
+    IconEyeUp,
+    IconEye,
+    IconBook,
+    IconNumber,
+    IconNumber1,
+} from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -15,7 +24,7 @@ export default function Index({ auth, users, search }) {
 
     const handleSearch = (e) => {
         if (e.keyCode == 13) {
-            router.visit(route("admin.users.index"), {
+            router.visit(route("admin.penilaian.index"), {
                 method: "get",
                 data: {
                     search: e.target.value,
@@ -31,30 +40,22 @@ export default function Index({ auth, users, search }) {
         <div className="row g-2 align-items-center">
             <FlashMessage flash={flash} show={show} setShow={setShow} />
             <div className="col">
-                <h2 className="page-title">Users</h2>
+                <h2 className="page-title">Siswa</h2>
                 <div className="text-muted mt-1">
                     {users.meta.from}-{users.meta.to} of {users.meta.total}{" "}
-                    people
+                    siswa
                 </div>
             </div>
             <div className="col-auto ms-auto d-print-none">
                 <div className="d-flex">
                     <input
                         type="search"
-                        className="form-control d-inline-block w-9 me-3"
+                        className="form-control d-inline-block w-9 "
                         placeholder="Search user…"
                         onKeyUp={handleSearch}
                         onChange={(e) => setTerm(e.target.value)}
                         value={term}
                     />
-                    <Link
-                        href={route("admin.users.create")}
-                        className="btn btn-primary"
-                    >
-                        {/* Download SVG icon from http://tabler-icons.io/i/plus */}
-                        <IconPlus className="icon" />
-                        New user
-                    </Link>
                 </div>
             </div>
         </div>
@@ -98,34 +99,21 @@ export default function Index({ auth, users, search }) {
                                 <div className="d-flex">
                                     <Link
                                         href={route(
-                                            "admin.users.edit",
+                                            "admin.penilaian.show",
                                             user.id
                                         )}
                                         className="card-btn"
                                     >
                                         <IconEdit className="icon" />
-                                        Edit
                                     </Link>
                                     <Link
-                                        onBefore={() =>
-                                            confirm("Are you sure?") &&
-                                            toast.loading("Tunggu Sebentar")
-                                        }
-                                        onFinish={() => toast.dismiss()}
-                                        onProgressCapture={() =>
-                                            toast.loading("test")
-                                        }
-                                        onProgress={() => toast.loading("test")}
-                                        as="button"
-                                        method="delete"
                                         href={route(
-                                            "admin.users.destroy",
+                                            "admin.penilaian.hapalan",
                                             user.id
                                         )}
                                         className="card-btn"
                                     >
-                                        <IconTrash className="icon" />
-                                        Delete
+                                        <IconBook className="icon" />
                                     </Link>
                                 </div>
                             </div>

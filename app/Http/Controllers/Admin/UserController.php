@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('updated_at', 'desc');
+        $users = User::role('user')->orderBy('updated_at', 'desc');
         if (request('search')) {
             $users->where('name', 'LIKE', '%' . request('search') . '%');
         }
@@ -98,7 +98,7 @@ class UserController extends Controller
                 "label" => "Berhasil tambah ➕ user " . $request->name,
                 "type" => "success",
             ],
-        ]);;
+        ]);
     }
 
     public function show(User $user)
