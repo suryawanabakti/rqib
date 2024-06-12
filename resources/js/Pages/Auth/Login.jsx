@@ -46,7 +46,7 @@ export default function Login({ status, canResetPassword }) {
                                 href="/"
                                 className="navbar-brand navbar-brand-autodark"
                             >
-                                RQIB
+                                <img src="/logorqib.png" alt="" width={100} />
                             </Link>
                         </div>
                         <h2 className="h3 text-center mb-3">
@@ -146,7 +146,7 @@ export default function Login({ status, canResetPassword }) {
                         </form>
                     </div>
                     <div className="text-center text-secondary mt-3">
-                        Don't have account yet?{" "}
+                        Sudah punya akun ?
                         <Link href={route("register")} tabindex="-1">
                             Sign up
                         </Link>

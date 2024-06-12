@@ -74,4 +74,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function kelasSiswa()
+    {
+        return $this->hasMany(KelasSiswa::class);
+    }
 }

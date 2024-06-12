@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/html2.ico">
+    {{-- <link rel="icon" href="/html2.ico"> --}}
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
-    {{-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> --}}
+    <link rel="icon" type="image/x-icon" href="/logorqib.png">
     <!-- Fonts -->
 
     <!-- Scripts -->

@@ -45,7 +45,7 @@ export default function Register({ status, canResetPassword }) {
                                 href="/"
                                 className="navbar-brand navbar-brand-autodark"
                             >
-                                RQIB
+                                <img src="/logorqib.png" alt="" width={100} />
                             </Link>
                         </div>
                         <h2 className="h3 text-center mb-3">
@@ -115,7 +115,7 @@ export default function Register({ status, canResetPassword }) {
                                         processing ? "btn-loading" : ""
                                     }`}
                                 >
-                                    Sign in
+                                    Sign up
                                 </button>
                             </div>
                         </form>

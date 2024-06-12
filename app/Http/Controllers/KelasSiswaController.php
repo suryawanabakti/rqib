@@ -53,6 +53,7 @@ class KelasSiswaController extends Controller
     public function show(KelasSiswa $kelassiswa)
     {
         $mataKuliah = MataKuliah::all();
+
         if ($kelassiswa->penilaian->count() == 0) {
             $rataRataNilai = 0;
         } else {

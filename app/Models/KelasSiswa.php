@@ -9,7 +9,12 @@ class KelasSiswa extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public $with = ['kelas', 'user', 'penilaian'];
+    public $with = ['kelas', 'user', 'penilaian', 'sabaqsabaqi'];
+
+    public  function sabaqsabaqi()
+    {
+        return $this->belongsTo(TahfidzSabaqSabaqi::class, 'kelas_siswa_id', 'id');
+    }
 
     public function user()
     {

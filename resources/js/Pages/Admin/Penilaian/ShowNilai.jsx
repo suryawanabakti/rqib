@@ -12,7 +12,21 @@ import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import toast from "react-hot-toast";
 
-export default function Show({ auth, kelasSiswa, mataKuliah, rataRataNilai }) {
+export default function ShowNilai({
+    auth,
+    kelasSiswa,
+    mataKuliah,
+    rataRataNilai,
+}) {
+    const cariPredikat = (nilai) => {
+        if (nilai > 90) {
+            return "A";
+        } else if (nilai >= 70 && nilai <= 94) {
+            return "A-";
+        } else {
+            return "B";
+        }
+    };
     const header = (
         <div className="row g-2 align-items-center">
             <div className="col">
@@ -142,6 +156,7 @@ export default function Show({ auth, kelasSiswa, mataKuliah, rataRataNilai }) {
                         <tr>
                             <th>Mata Kuliah</th>
                             <th>Nilai</th>
+                            <th>Predikat</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -151,6 +166,7 @@ export default function Show({ auth, kelasSiswa, mataKuliah, rataRataNilai }) {
                                 <tr key={data.id}>
                                     <td>{data.matakuliah?.matakuliah}</td>
                                     <td>{data.nilai}</td>
+                                    <td>{cariPredikat(data.nilai)}</td>
                                     <td>
                                         <Link
                                             method="delete"

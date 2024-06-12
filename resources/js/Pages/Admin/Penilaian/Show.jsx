@@ -51,7 +51,7 @@ export default function Show({ auth, user, kelas, kelasSiswa }) {
             <div className="card">
                 <div className="card-body d-flex justify-between">
                     <div className="card-title">Daftar Kelas</div>
-                    <div className="btn-actions">
+                    <div className="btn-actions gap-2">
                         <button
                             className="btn btn-primary"
                             onClick={() => setShow(true)}
@@ -135,7 +135,16 @@ export default function Show({ auth, user, kelas, kelasSiswa }) {
                                                 data.id
                                             )}
                                         >
-                                            Lihat Nilai
+                                            Nilai
+                                        </Link>
+                                        <Link
+                                            className="btn btn-info"
+                                            href={route(
+                                                "admin.penilaian.hapalan.index",
+                                                data.id
+                                            )}
+                                        >
+                                            Hapalan
                                         </Link>
                                         <Link
                                             className="btn btn-danger"

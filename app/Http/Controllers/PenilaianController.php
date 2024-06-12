@@ -7,7 +7,9 @@ use App\Models\Kelas;
 use App\Models\KelasSiswa;
 use App\Models\Penilaian;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+
 
 class PenilaianController extends Controller
 {
@@ -81,5 +83,13 @@ class PenilaianController extends Controller
     {
         $penilaian->delete();
         return back();
+    }
+
+    public function cetak($id)
+    {
+        $user = User::where('id', $id)->with('kelasSiswa')->first();
+        $pdf = Pdf::loadView('exports.penilaian', compact('user'));
+        return $pdf->stream();
+        // return view('exports.penilaian', compact('user'));
     }
 }

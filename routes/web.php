@@ -57,8 +57,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/pendaftar/{pendaftar}/diterima', [PendaftarController::class, 'diterima'])->name('admin.pendaftar.diterima');
 
     Route::resource('/admin/penilaian/kelassiswa', KelasSiswaController::class)->names('admin.kelassiswa');
+    Route::get('/admin/penilaian/cetak/{id}', [PenilaianController::class, 'cetak'])->name('admin.penilaian.cetak');
     Route::resource('/admin/penilaian', PenilaianController::class)->names('admin.penilaian');
     Route::get('/admin/penilaian/hapalan/{user}', [HapalanController::class, 'index'])->name('admin.penilaian.hapalan');
+
+    Route::get('/admin/penilaian/hapalan/{kelasSiswa}', [HapalanController::class, 'index'])->name('admin.penilaian.hapalan.index');
+    Route::get('/admin/penilaian/hapalan/{kelasSiswa}/export', [HapalanController::class, 'export'])->name('admin.penilaian.hapalan.export');
+    Route::post('/admin/penilaian/hapalan', [HapalanController::class, 'store'])->name('admin.penilaian.hapalan.store');
+    Route::delete('/admin/penilaian/hapalan/sabaqsabaqi/{tahfidzSabaqSabaqi}', [HapalanController::class, 'destroySabaqsabaqi'])->name('admin.penilaian.hapalan.destroySabaqsabaqi');
+    Route::delete('/admin/penilaian/hapalan/simaan/{tahfidzSimaan}', [HapalanController::class, 'destroySimaan'])->name('admin.penilaian.hapalan.destroySimaan');
+    Route::delete('/admin/penilaian/hapalan/ikhtibar/{tahfidzIkhtibar}', [HapalanController::class, 'destroyIkhtibar'])->name('admin.penilaian.hapalan.destroyIkhtibar');
+    Route::delete('/admin/penilaian/hapalan/ikhtibar-bulanan/{tahfidzIkhtibarBulanan}', [HapalanController::class, 'destroyIkhtibarBulanan'])->name('admin.penilaian.hapalan.destroyIkhtibarBulanan');
+    Route::delete('/admin/penilaian/hapalan/ikhtibar-semester/{tahfidzIkhtibarSemester}', [HapalanController::class, 'destroyIkhtibarSemester'])->name('admin.penilaian.hapalan.destroyIkhtibarSemester');
 
     Route::resource('users', UserController::class)->names("admin.users");
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

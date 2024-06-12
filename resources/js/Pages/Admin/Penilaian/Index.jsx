@@ -106,15 +106,6 @@ export default function Index({ auth, users, search }) {
                                     >
                                         <IconEdit className="icon" />
                                     </Link>
-                                    <Link
-                                        href={route(
-                                            "admin.penilaian.hapalan",
-                                            user.id
-                                        )}
-                                        className="card-btn"
-                                    >
-                                        <IconBook className="icon" />
-                                    </Link>
                                 </div>
                             </div>
                         </div>
