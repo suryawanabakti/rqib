@@ -56,7 +56,7 @@ export default function Login({ status, canResetPassword }) {
                             <div className="mb-3">
                                 <label className="form-label">Username</label>
                                 <input
-                                    type="email"
+                                    type="text"
                                     className="form-control"
                                     placeholder="usernamekamu"
                                     autoComplete="email"

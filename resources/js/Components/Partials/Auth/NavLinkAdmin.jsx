@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "@inertiajs/react";
 import {
     IconBook2,
+    IconChalkboard,
     IconHome,
     IconList,
     IconNumber,
@@ -28,6 +29,7 @@ export default function NavLinkAdmin() {
                     <span className="nav-link-title">Home</span>
                 </Link>
             </li>
+
             <li
                 className={`nav-item ${
                     route().current("admin.pendaftar*") && "active"
@@ -41,6 +43,18 @@ export default function NavLinkAdmin() {
                         <IconPencil className="icon" />
                     </span>
                     <span className="nav-link-title">Pendaftar</span>
+                </Link>
+            </li>
+            <li
+                className={`nav-item ${
+                    route().current("admin.guru*") && "active"
+                }`}
+            >
+                <Link className="nav-link" href={route("admin.guru.index")}>
+                    <span className="nav-link-icon d-md-none d-lg-inline-block">
+                        <IconChalkboard className="icon" />
+                    </span>
+                    <span className="nav-link-title">Guru</span>
                 </Link>
             </li>
             <li

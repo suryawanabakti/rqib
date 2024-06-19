@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Admin\GuruController as AdminGuruController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HapalanController;
 use App\Http\Controllers\KelasController;
@@ -19,7 +20,6 @@ use Inertia\Inertia;
 use Surya\Sso\Authenticated;
 
 Route::get('/', function () {
-
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -46,6 +46,9 @@ Route::get('/login-sso', function () {
 });
 
 Route::get('/dashboard', function () {
+    if (auth()->user()->hasRole(['guru', 'kepala'])) {
+        return redirect()->route("admin.penilaian.index");
+    }
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -71,6 +74,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/penilaian/hapalan/ikhtibar-semester/{tahfidzIkhtibarSemester}', [HapalanController::class, 'destroyIkhtibarSemester'])->name('admin.penilaian.hapalan.destroyIkhtibarSemester');
 
     Route::resource('users', UserController::class)->names("admin.users");
+    Route::resource('guru', AdminGuruController::class)->names("admin.guru");
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

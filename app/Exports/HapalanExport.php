@@ -48,7 +48,13 @@ class HapalanExport implements FromView
         return view(
             'exports.hapalan',
             [
-                "kelasSiswa" => $kelassiswa, "mataKuliah" => $mataKuliah, "rataRataNilai" => $rataRataNilai, "sabaqsabaqi" => $sabaqsabaqi, 'simaan' => $simaan, 'ikhtibar' => $ikhtibar, 'ikhtibarBulanan' => $ikhtibarBulanan, 'ikhtibarSemester' => $ikhtibarSemester, "sumSabaqsabaqi" => $sumSabaqsabaqi,
+                "kelasSiswa" => $kelassiswa,
+                "mataKuliah" => $mataKuliah,
+                "rataRataNilai" => $rataRataNilai,
+                "sabaqsabaqi" => $sabaqsabaqi,
+                'simaan' => $simaan,
+                'ikhtibar' => $ikhtibar,
+                'ikhtibarBulanan' => $ikhtibarBulanan, 'ikhtibarSemester' => $ikhtibarSemester, "sumSabaqsabaqi" => $sumSabaqsabaqi,
                 "sumSimaan" => $sumSimaan,
                 "sumIkhtibar" => $sumIkhtibar,
                 "rataSabaqsabaqi" => $rataSabaqsabaqi,

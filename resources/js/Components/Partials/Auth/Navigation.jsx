@@ -11,6 +11,7 @@ import {
     IconSearch,
 } from "@tabler/icons-react";
 import NavLinkAdmin from "./NavLinkAdmin";
+import NavLinkGuru from "./NavLinkGuru";
 
 export default function Navigation({ user }) {
     const [notifications, setNotifcations] = useState([]);
@@ -262,7 +263,9 @@ export default function Navigation({ user }) {
                 >
                     <div className="navbar">
                         <div className="container-xl">
-                            <NavLinkAdmin />
+                            {user.roles[0].name == "admin" && <NavLinkAdmin />}
+                            {user.roles[0].name == "guru" && <NavLinkGuru />}
+
                             <div className="my-2 my-md-0 flex-grow-1 flex-md-grow-0 order-first order-md-last">
                                 <form
                                     action="./"

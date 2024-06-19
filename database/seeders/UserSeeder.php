@@ -26,11 +26,27 @@ class UserSeeder extends Seeder
         ])->assignRole('super');
 
         \App\Models\User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin',
+            'name' => 'Staff sekolah',
+            'email' => 'staff',
             'password' => Hash::make("password"),
             'gender' => 'male',
             'date_of_birth' => now()->format('Y-m-d'),
         ])->assignRole('admin');
+
+        \App\Models\User::create([
+            'name' => 'Kepala sekolah',
+            'email' => 'kepala',
+            'password' => Hash::make("password"),
+            'gender' => 'male',
+            'date_of_birth' => now()->format('Y-m-d'),
+        ])->assignRole('kepala');
+
+        \App\Models\User::create([
+            'name' => 'Guru',
+            'email' => 'guru',
+            'password' => Hash::make("password"),
+            'gender' => 'male',
+            'date_of_birth' => now()->format('Y-m-d'),
+        ])->assignRole('guru');
     }
 }

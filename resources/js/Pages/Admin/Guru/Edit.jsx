@@ -6,15 +6,24 @@ import {
     IconGenderMale,
     IconGenderFemale,
 } from "@tabler/icons-react";
-export default function Create({ auth, years, months, days }) {
-    const { data, setData, post, errors, processing } = useForm({
-        name: "",
-        email: "",
-        password: "",
-        gender: "",
-        month: "",
-        day: "",
-        year: "",
+export default function Edit({
+    auth,
+    years,
+    months,
+    days,
+    user,
+    day,
+    month,
+    year,
+}) {
+    const { data, setData, put, errors, processing } = useForm({
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        gender: user.gender,
+        month: month,
+        day: day,
+        year: year,
         photo: "",
     });
 
@@ -24,20 +33,20 @@ export default function Create({ auth, years, months, days }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("admin.users.store"));
+        put(route("admin.guru.update", user.id));
         console.log(data);
     };
     const header = (
         <div className="row g-2 align-items-center">
             <div className="col">
-                <h2 className="page-title">Users </h2>
+                <h2 className="page-title">Guru </h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-1">
                         <li class="breadcrumb-item">
-                            <Link href={route("admin.users.index")}>Users</Link>
+                            <Link href={route("admin.guru.index")}>Guru</Link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Create
+                            Edit
                         </li>
                     </ol>
                 </nav>
@@ -45,7 +54,7 @@ export default function Create({ auth, years, months, days }) {
             <div className="col-auto ms-auto d-print-none">
                 <div className="d-flex">
                     <Link
-                        href={route("admin.users.index")}
+                        href={route("admin.guru.index")}
                         className="btn btn-primary"
                     >
                         {/* Download SVG icon from http://tabler-icons.io/i/plus */}
@@ -58,7 +67,7 @@ export default function Create({ auth, years, months, days }) {
     );
     return (
         <AuthenticatedLayout user={auth.user} header={header}>
-            <Head title="Create" />
+            <Head title="Edit" />
             <div className="card">
                 <form onSubmit={submit}>
                     <div className="card-body">
@@ -116,20 +125,15 @@ export default function Create({ auth, years, months, days }) {
                             )}
                         </div>
                         <div className="mb-3">
-                            <label
-                                className="form-label required"
-                                htmlFor="month"
-                            >
-                                Date of birth
-                            </label>
+                            <label className="form-label">Date of birth</label>
                             <div className="row g-2">
                                 <div className="col-5">
                                     <select
                                         required
-                                        id="month"
                                         name="month"
                                         className="form-select"
                                         onChange={handleChange}
+                                        value={data.month}
                                     >
                                         <option value="" disabled selected>
                                             Month
@@ -154,6 +158,7 @@ export default function Create({ auth, years, months, days }) {
                                         name="day"
                                         className="form-select"
                                         onChange={handleChange}
+                                        value={data.day}
                                     >
                                         <option value="" disabled selected>
                                             Day
@@ -178,6 +183,7 @@ export default function Create({ auth, years, months, days }) {
                                         name="year"
                                         className="form-select"
                                         onChange={handleChange}
+                                        value={data.year}
                                     >
                                         <option value="" disabled selected>
                                             Year
@@ -203,8 +209,8 @@ export default function Create({ auth, years, months, days }) {
                         </div>
                         <FormGroup
                             label="Photo"
-                            id="photo"
                             type="file"
+                            id="photo"
                             onChange={(e) =>
                                 setData("photo", e.target.files[0])
                             }

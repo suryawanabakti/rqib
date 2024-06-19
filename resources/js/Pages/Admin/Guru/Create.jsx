@@ -24,17 +24,17 @@ export default function Create({ auth, years, months, days }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("admin.users.store"));
+        post(route("admin.guru.store"));
         console.log(data);
     };
     const header = (
         <div className="row g-2 align-items-center">
             <div className="col">
-                <h2 className="page-title">Users </h2>
+                <h2 className="page-title">Guru </h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-1">
                         <li class="breadcrumb-item">
-                            <Link href={route("admin.users.index")}>Users</Link>
+                            <Link href={route("admin.guru.index")}>Guru</Link>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Create

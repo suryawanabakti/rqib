@@ -218,9 +218,9 @@ export default function Edit({
                         />
                         <FormGroup
                             required={true}
-                            label="Email"
+                            label="Username"
                             id="email"
-                            type="email"
+                            type="text"
                             onChange={(e) => setData("email", e.target.value)}
                             value={data.email}
                             placeholder="Iput email..."
