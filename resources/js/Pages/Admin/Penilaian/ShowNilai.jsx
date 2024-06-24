@@ -71,7 +71,13 @@ export default function ShowNilai({
                         Daftar Mata Kuliah & Nilai Kelas :{" "}
                         {kelasSiswa.kelas?.name}
                     </div>
-                    <div className="btn-actions">
+                    <div className="btn-actions gap-2">
+                        <a
+                            href={route("admin.penilaian.cetak", kelasSiswa.id)}
+                            className="btn btn-warning"
+                        >
+                            Export
+                        </a>
                         <button
                             className="btn btn-primary"
                             onClick={() => setShow(true)}

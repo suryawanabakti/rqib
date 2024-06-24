@@ -7,7 +7,13 @@ import {
     IconUsers,
 } from "@tabler/icons-react";
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({
+    auth,
+    pendaftar,
+    siswa,
+    kelas,
+    mataKuliah,
+}) {
     const header = (
         <div className="row g-2 align-items-center">
             <div className="col">
@@ -38,7 +44,7 @@ export default function Dashboard({ auth }) {
                                 </div>
                                 <div className="col">
                                     <div className="font-weight-medium">
-                                        132 Pendaftar
+                                        {pendaftar} Pendaftar
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +63,7 @@ export default function Dashboard({ auth }) {
                                 </div>
                                 <div className="col">
                                     <div className="font-weight-medium">
-                                        132 Siswa
+                                        {siswa} Siswa
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +82,7 @@ export default function Dashboard({ auth }) {
                                 </div>
                                 <div className="col">
                                     <div className="font-weight-medium">
-                                        132 Kelas
+                                        {kelas} Kelas
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +101,7 @@ export default function Dashboard({ auth }) {
                                 </div>
                                 <div className="col">
                                     <div className="font-weight-medium">
-                                        132 Mata Kuliah.
+                                        {mataKuliah} Mata Kuliah.
                                     </div>
                                 </div>
                             </div>

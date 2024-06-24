@@ -19,7 +19,6 @@ class HapalanExport implements FromView
     }
     public function view(): View
     {
-        $mataKuliah = MataKuliah::all();
         $kelassiswa = KelasSiswa::find($this->kelassiswa);
 
         $sabaqsabaqi =  TahfidzSabaqSabaqi::where('kelas_siswa_id', $kelassiswa->id)->get();
@@ -49,7 +48,6 @@ class HapalanExport implements FromView
             'exports.hapalan',
             [
                 "kelasSiswa" => $kelassiswa,
-                "mataKuliah" => $mataKuliah,
                 "rataRataNilai" => $rataRataNilai,
                 "sabaqsabaqi" => $sabaqsabaqi,
                 'simaan' => $simaan,

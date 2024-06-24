@@ -11,6 +11,9 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PendaftarController;
 use App\Http\Controllers\PenilaianController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Kelas;
+use App\Models\MataKuliah;
+use App\Models\Pendaftar;
 use App\Models\User;
 use App\Notifications\FeedbackNotification;
 use Illuminate\Foundation\Application;
@@ -49,7 +52,18 @@ Route::get('/dashboard', function () {
     if (auth()->user()->hasRole(['guru', 'kepala'])) {
         return redirect()->route("admin.penilaian.index");
     }
-    return Inertia::render('Dashboard');
+
+    $pendaftar = Pendaftar::count();
+    $siswa = User::role('user')->count();
+    $kelas = Kelas::count();
+    $mataKuliah = MataKuliah::count();
+
+    return Inertia::render('Dashboard', [
+        "pendaftar" => $pendaftar,
+        "siswa" => $siswa,
+        "kelas" => $kelas,
+        "mataKuliah" => $mataKuliah,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

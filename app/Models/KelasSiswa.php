@@ -9,7 +9,7 @@ class KelasSiswa extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public $with = ['kelas', 'user', 'penilaian', 'sabaqsabaqi'];
+    public $with = ['kelas', 'user'];
 
     public  function sabaqsabaqi()
     {

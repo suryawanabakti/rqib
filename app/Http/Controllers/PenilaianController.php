@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PenilaianExport;
 use App\Http\Resources\Admin\UserResource;
 use App\Models\Kelas;
 use App\Models\KelasSiswa;
@@ -9,7 +10,7 @@ use App\Models\Penilaian;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenilaianController extends Controller
 {
@@ -87,9 +88,7 @@ class PenilaianController extends Controller
 
     public function cetak($id)
     {
-        $user = User::where('id', $id)->with('kelasSiswa')->first();
-        $pdf = Pdf::loadView('exports.penilaian', compact('user'));
-        return $pdf->stream();
+        return Excel::download(new PenilaianExport($id), 'penilaian.xlsx');
         // return view('exports.penilaian', compact('user'));
     }
 }
